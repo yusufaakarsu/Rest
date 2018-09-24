@@ -161,7 +161,7 @@ public class Add_stc_buy extends javax.swing.JFrame {
                 _db.insertWithfunc(sql);
             }
             JOptionPane.showMessageDialog(rootPane, "Kayıt Yapıldı");
-        } catch (SQLException e) {
+        } catch (SQLException e){
             JOptionPane.showMessageDialog(rootPane, "Kayıt Yapılamadı !");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
