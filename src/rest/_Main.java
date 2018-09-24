@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 public class _Main extends javax.swing.JFrame {
     
+    //deneme
     private Dimension d = null;
     Mn_emp_emp emp_emp = new Mn_emp_emp();
     Mn_emp_acc emp_acc = new Mn_emp_acc();
@@ -31,7 +32,6 @@ public class _Main extends javax.swing.JFrame {
     Def_stc_prd_grp_sub def_stc_prd_grp_sub = new Def_stc_prd_grp_sub();
     Def_stc_prd_grp_up def_stc_prd_grp_up = new Def_stc_prd_grp_up();
     Def_stc_products def_stc_products = new Def_stc_products();
-    Def_stc_ven_groups def_stc_ven_groups = new Def_stc_ven_groups();
     Def_stc_vendors def_stc_vendors = new Def_stc_vendors();
 
     public _Main() {
@@ -82,7 +82,6 @@ public class _Main extends javax.swing.JFrame {
         mni_stc_grp_up = new javax.swing.JMenuItem();
         mni_stc_grp_sub = new javax.swing.JMenuItem();
         mni_stc_prd = new javax.swing.JMenuItem();
-        mni_stc_ven_grp = new javax.swing.JMenuItem();
         mni_stc_ven = new javax.swing.JMenuItem();
         mn_prd = new javax.swing.JMenu();
         mni_prd_grp_up = new javax.swing.JMenuItem();
@@ -364,15 +363,6 @@ public class _Main extends javax.swing.JFrame {
             }
         });
         mn_stc.add(mni_stc_prd);
-
-        mni_stc_ven_grp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/MenuIcons/25_add.png"))); // NOI18N
-        mni_stc_ven_grp.setText("Satıcı Gurup Tanımları");
-        mni_stc_ven_grp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mni_stc_ven_grpActionPerformed(evt);
-            }
-        });
-        mn_stc.add(mni_stc_ven_grp);
 
         mni_stc_ven.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/MenuIcons/25_add.png"))); // NOI18N
         mni_stc_ven.setText("Satıcı Tanımları");
@@ -774,20 +764,6 @@ public class _Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_mni_stc_prdActionPerformed
 
-    private void mni_stc_ven_grpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_stc_ven_grpActionPerformed
-        try {
-            def_stc_ven_groups.setSelected(true);
-        } catch (PropertyVetoException e) {
-            Logger.getLogger(_Main.class.getName()).log(Level.SEVERE, null, e);
-        }
-        if(!def_stc_ven_groups.isVisible()){
-            desktopPane.add(def_stc_ven_groups);
-            d = desktopPane.getSize();
-            def_stc_ven_groups.setSize(d);
-            def_stc_ven_groups.setVisible(true);
-        }
-    }//GEN-LAST:event_mni_stc_ven_grpActionPerformed
-
     private void mni_stc_venActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mni_stc_venActionPerformed
         try {
             def_stc_vendors.setSelected(true);
@@ -947,6 +923,5 @@ public class _Main extends javax.swing.JFrame {
     private javax.swing.JMenuItem mni_stc_grp_up;
     private javax.swing.JMenuItem mni_stc_prd;
     private javax.swing.JMenuItem mni_stc_ven;
-    private javax.swing.JMenuItem mni_stc_ven_grp;
     // End of variables declaration//GEN-END:variables
 }

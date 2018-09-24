@@ -8,6 +8,10 @@ public class Def_stc_vendors extends javax.swing.JInternalFrame {
         initComponents();
         _db.tableFill(jTable1, "select * from pu_pur_ven");
     }
+    
+    public static void tableFill(){
+        _db.tableFill(jTable1, "select * from pu_pur_ven");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,6 +84,6 @@ public class Def_stc_vendors extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

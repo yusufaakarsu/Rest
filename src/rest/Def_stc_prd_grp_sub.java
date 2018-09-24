@@ -8,6 +8,10 @@ public class Def_stc_prd_grp_sub extends javax.swing.JInternalFrame {
         initComponents();
         _db.tableFill(jTable1, "select * from pu_pur_grp_sub");
     }
+    
+    public static void tableFill(){
+        _db.tableFill(jTable1, "select * from pu_pur_grp_sub");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,6 +84,6 @@ public class Def_stc_prd_grp_sub extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

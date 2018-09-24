@@ -1,13 +1,28 @@
 package rest;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Mn_acc_acc extends javax.swing.JInternalFrame {
     
-    Add_pur_acc acc = new Add_pur_acc();
-
     public Mn_acc_acc() {
         initComponents();
-        _db.tableFill(jTable1, "select * from vw_pu_pur_acc");
-        _db.tableFill(jTable2, "select * from vw_pu_pur_acc_dtl");
+        _db.tableFill(jTable1, "select * from vw_pu_pur_acc where \"Durum\" = 'Evet'");
+    }
+    
+    public static void tableFill(){
+        if(jComboBox1.getSelectedItem() == "Tüm Firmalar"){
+            _db.tableFill(jTable1, "select * from vw_pu_pur_acc");
+        }else if(jComboBox1.getSelectedItem() == "Aktif Firmalar"){
+            _db.tableFill(jTable1, "select * from vw_pu_pur_acc where \"Durum\" = 'Evet'");
+        }else if(jComboBox1.getSelectedItem() == "Pasif Firmalar"){
+            _db.tableFill(jTable1, "select * from vw_pu_pur_acc where \"Durum\" = 'Hayır'");
+        }
+    }
+    
+    public static void tableFill2(){
+        _db.tableFill(jTable2, "select * from vw_pu_pur_acc_dtl where \"Adı\" = '"+jTable1.getValueAt(jTable1.getSelectedRow(), 1)+"'");
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +57,12 @@ public class Mn_acc_acc extends javax.swing.JInternalFrame {
         jButton1.setBounds(10, 40, 160, 60);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tüm Firmalar", "Aktif Firmalar", "Pasif Firmalar" }));
+        jComboBox1.setSelectedIndex(1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(10, 10, 160, 27);
 
@@ -56,6 +77,11 @@ public class Mn_acc_acc extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -96,17 +122,31 @@ public class Mn_acc_acc extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        acc.setVisible(true);
+        Add_pur_acc acc;
+        try {
+            acc = new Add_pur_acc();
+            acc.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Mn_acc_acc.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        tableFill2();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        tableFill();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private static javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }

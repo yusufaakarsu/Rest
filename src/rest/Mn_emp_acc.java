@@ -6,8 +6,21 @@ public class Mn_emp_acc extends javax.swing.JInternalFrame {
 
     public Mn_emp_acc() {
         initComponents();
-        _db.tableFill(jTable1, "select * from vw_hr_emp_acc");
-        _db.tableFill(jTable2, "select * from vw_hr_emp_acc_dtl");
+        table1Fill();
+    }
+    
+    public void table1Fill(){
+        if(jComboBox1.getSelectedItem() == "Tüm Personeler"){
+            _db.tableFill(jTable1, "select * from vw_hr_emp_acc");
+        }else if(jComboBox1.getSelectedItem() == "Aktif Personeller"){
+            _db.tableFill(jTable1, "select * from vw_hr_emp_acc where \"Durum\" = 'Evet'");
+        }else if(jComboBox1.getSelectedItem() == "Pasif Personeller"){
+            _db.tableFill(jTable1, "select * from vw_hr_emp_acc where \"Durum\" = 'Hayır'");
+        }
+    }
+    
+    public static void table2Fill(){
+        _db.tableFill(jTable2, "select * from vw_hr_emp_acc_dtl where \"ID\" = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +55,12 @@ public class Mn_emp_acc extends javax.swing.JInternalFrame {
         jButton1.setBounds(10, 40, 160, 60);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tüm Personeler", "Aktif Personeller", "Pasif Personeller" }));
+        jComboBox1.setSelectedIndex(1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox1);
         jComboBox1.setBounds(10, 10, 160, 27);
 
@@ -56,6 +75,11 @@ public class Mn_emp_acc extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,6 +123,14 @@ public class Mn_emp_acc extends javax.swing.JInternalFrame {
         acc.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        _db.tableFill(jTable2, "select * from vw_hr_emp_acc_dtl where \"ID\" = "+jTable1.getValueAt(jTable1.getSelectedRow(), 0)+"");
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        table1Fill();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -106,7 +138,7 @@ public class Mn_emp_acc extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    static javax.swing.JTable jTable1;
+    static javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
