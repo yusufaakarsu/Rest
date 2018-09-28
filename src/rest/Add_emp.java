@@ -16,6 +16,7 @@ public class Add_emp extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Mn_emp_emp.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        deneme
     }
 
     @SuppressWarnings("unchecked")
