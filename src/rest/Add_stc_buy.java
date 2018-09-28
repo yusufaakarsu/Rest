@@ -120,7 +120,7 @@ public class Add_stc_buy extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "Ürün", "Miktar", "Fiyat"
             }
         ));
         jScrollPane1.setViewportView(table);
@@ -147,19 +147,21 @@ public class Add_stc_buy extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String pur_ven = jcb_ven.getSelectedItem().toString();
+            String pur_date  = sdf.format(jdp.getDate());
+            String pur_invoice = jtf_invoice.getText();
+            String sqlPur = "SELECT public.insert_into_pu_pur('"+pur_ven+"','"+pur_date+"',"+pur_invoice+")";
+            _db.insertWithfunc(sqlPur);
             int rows = table.getRowCount();
             for(int row = 0; row <rows; row++){
-                String pur_ven = jcb_ven.getSelectedItem().toString();
-                String pur_date  = sdf.format(jdp.getDate());
-                String pur_invoice = jtf_invoice.getText();
                 String pur_prd = (String) table.getValueAt(row, 0);
                 String pur_qty = (String) table.getValueAt(row, 1);
                 String pur_price = (String) table.getValueAt(row, 2);
                 int str_id = 1;
-                String sql = "SELECT public.insert_into_pu_pur('"+pur_ven+"','"+pur_date+"',"+pur_invoice+",'"+pur_prd+"',"+pur_qty+","+pur_price+","+str_id+")";
-                
+                String sql = "SELECT public.insert_into_pu_pur_dtl('"+pur_prd+"',"+pur_qty+","+pur_price+","+str_id+")";
                 _db.insertWithfunc(sql);
             }
+            Mn_stc_buy.tableFill();
             JOptionPane.showMessageDialog(rootPane, "Kayıt Yapıldı");
         } catch (SQLException e){
             JOptionPane.showMessageDialog(rootPane, "Kayıt Yapılamadı !");

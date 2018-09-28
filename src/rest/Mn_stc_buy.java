@@ -8,6 +8,10 @@ public class Mn_stc_buy extends javax.swing.JInternalFrame {
         initComponents();
         _db.tableFill(jTable1, "select * from vw_pu_pur_buy");
     }
+    
+    public static void tableFill(){
+        _db.tableFill(jTable1, "select * from vw_pu_pur_buy");
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,6 +84,6 @@ public class Mn_stc_buy extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
